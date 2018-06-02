@@ -10,8 +10,9 @@ import {
 const router = express.Router();
 router.post('/login', login);
 router.post('/logout', logout);
+router.get('/fetch/launch', getData);
 router.get('/getData', getData);
 router.get('/getListInstock', getListInstock);
 router.get('/getCustomerDetailById/:artistId', getCustomerDetailById);
 
-module.exports = router;
+export default router;

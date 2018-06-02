@@ -17,7 +17,7 @@
     "115": "Token expired",
     "116": "Bad token",
     "117": "System error",
-    "118": "Can not sign token",
+    "118": "Cannot sign token",
     "119": "Login infomation not correct",
     "403": "Forbidden",
     "120": "Account is pending, waiting approve",
@@ -45,5 +45,5 @@
     "143": "",
     "144": "You are not consumer of the site, please use another consumer account",
     "1000000": "Special code for json validation",
-    "145": "Parameter id must be provided"
+    "145": "Parameter must be provided"
 }

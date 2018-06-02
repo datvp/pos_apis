@@ -15,7 +15,7 @@ module.exports = {
     ]
   },
   payloadLimit: '600mb',
-  connectString: 'mssql://sa:123456@./DnHSell',
+  connectString: 'mssql://sa:123456@./iPOS',
   cipher: {
     algorithm: 'aes-128-cbc',
     key: '5ebe2294ecd0e0f08eab7690d2a6ee69',
