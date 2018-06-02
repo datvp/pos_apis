@@ -13,7 +13,7 @@ import Promise from 'bluebird';
 import path from 'path';
 
 import { port, host, payloadLimit as limit } from './config';
-import { login, getData } from './apis';
+import apis from './apis';
 
 const app = express();
 
@@ -62,8 +62,7 @@ if (!__DEV__) {
   );
 }
 
-app.get('/getData', getData);
-app.post('/login', login);
+app.use(apis);
 
 if (port) {
   app.listen(port, host, err => {
