@@ -4,7 +4,8 @@ import {
   logout,
   getListInstock,
   getCustomerDetailById,
-  getData
+  getData,
+  getCustomerByLastItemIndex
 } from './dal';
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.get('/fetch/launch', getData);
 router.get('/getData', getData);
 router.get('/getListInstock', getListInstock);
 router.get('/getCustomerDetailById/:artistId', getCustomerDetailById);
+router.get('/customers/fetch/:LastItemIndex', getCustomerByLastItemIndex);
 
 export default router;

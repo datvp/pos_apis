@@ -144,3 +144,35 @@ export const getCustomerDetailById = async (req, res) => {
     send(res, buildResponse(403), STATUS_CODE.BAD_REQUEST);
   }
 };
+
+export const getCustomerByLastItemIndex = async (req, res) => {
+  try {
+    const reqInfo = getRequestInfo(req);
+    const {
+      params: {
+        LastItemIndex = '0',
+      } = {},
+    } = reqInfo;
+
+    // open connection
+    const pool = await connect(connectString);
+    const strQuery = `With Customers as(
+      select ROW_NUMBER() OVER(ORDER BY s_Name ASC) AS Ordinal, s_ID, s_Name, s_Phone1 from ls_objects
+      )
+      Select *
+      from Customers
+      where Ordinal between @from and @to`;
+    const { recordset = [] } = await pool.request()
+      .input('from', Int, parseInt(LastItemIndex) + 1)
+      .input('to', Int, parseInt(LastItemIndex) + 3)
+      .query(strQuery);
+    // close connection
+    await close();
+    // response to client
+    send(res, buildResponse(0, recordset), STATUS_CODE.SUCCESS);
+  } catch (error) {
+    await close();
+    console.log('error of getCustomerByPageNumber', error);
+    send(res, buildResponse(403), STATUS_CODE.BAD_REQUEST);
+  }
+}
